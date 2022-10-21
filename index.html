@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Country</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+  <header class="header-bg">
+    <div class="header container">
+      <h1 class="font-g">Where in the world?</h1>
+      <div class="dark-mode font-p-b2">
+        <span><img src="./imgs/moon-outline.svg" alt=""></span>
+        <span>Dark Mode</span>
+      </div>
+    </div>
+  </header>
+
+  <section class="country-modal-bg" data-modal="disabled">
+    <div class="country-modal container">
+      <div class="modal-back">
+        <button class="country-modal-btn-back font-p-b"><img src="/imgs/arrow-back-outline.svg" alt="<"> Back</button>
+      </div>
+      <div class="country-modal-main">
+        <div class="country-modal-img">
+          <img class="modal-img" src="" alt="">
+        </div>
+        <div class="country-modal-content">
+          <h3 class="modal-name font-g"></h3>
+          <div class="country-modal-data font-p-b">
+            <ul>
+              <li>Native Name: <span class="modal-native-name"></span></li>
+              <li>Population: <span class="modal-population"></span></li>
+              <li>Region: <span class="modal-region"></span></li>
+              <li>Sub Region: <span class="modal-subregion"></span></li>
+              <li>Capital: <span class="modal-capital"></span></li>
+            </ul>
+            <ul>
+              <li>Top Level Domain: <span class="modal-tld"></span></li>
+              <li>Currencies: <span class="modal-currencies"></span></li>
+              <li>Languages: <span class="modal-languages"></span></li>
+            </ul>
+          </div>
+          <div class="border-countries">
+            <span class="font-p-b">Border Countries:</span>
+            <ul>
+
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="main-bg">
+    <div class="main container">
+      <div class="country-header">
+        <div class="search-country">
+          <label for="search">
+            <img src="/imgs/search-outline.svg" alt=">">
+          </label>
+          <input class="search-input font-p-b" type="text" placeholder="Search for a country..." id="search">
+        </div>
+        <div class="filter-country">
+          <p class="filter-label font-pp-b">
+            Filter by Region 
+            <img src="/imgs/arrow-outline.svg" alt=">">
+          </p>
+          <ul class="filter-list font-pp-b">
+            <li id="Africa">Africa</li>
+            <li id="Americas">Americas</li>
+            <li id="Asia">Asia</li>
+            <li id="Europe">Europe</li>
+            <li id="Oceania">Oceania</li>
+            <li id="Antarctic">Antarctic</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="countries">
+        <ul class="countries-list" data-country="list">
+
+        </ul>
+      </div>
+    </div>
+  </main>
+  
+  <script src="index.js"></script>
+</body>
+</html>

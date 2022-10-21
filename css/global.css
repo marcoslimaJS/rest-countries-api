@@ -1,0 +1,46 @@
+body,h1,h2,h3,div,p,ul,li,a {
+  padding: 0px;
+  margin: 0px;
+}
+ul {
+  list-style: none;
+}
+a{
+  text-decoration: none;
+}
+img{
+  display: block;
+  max-width: 100%;
+}
+body{
+  font-family: 'Nunito Sans', sans-serif;
+  background: var(--cor-s2);
+  position: relative;
+}
+
+.container {
+  max-width: 1300px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 40px;
+}
+
+.header-bg {
+  background: var(--cor-white);
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 1px 5px 0px;
+  
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  
+}
+
+.dark-mode {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

@@ -1,0 +1,54 @@
+/*Colors*/
+:root {
+  --cor-p1: hsl(209, 23%, 22%);
+  --cor-p2: hsl(207, 26%, 17%);
+  --cor-p3: hsl(200, 15%, 8%);
+  --cor-s1: hsl(0, 0%, 52%);
+  --cor-s2: hsl(0, 0%, 98%);
+  --cor-white: hsl(0, 0%, 100%);
+}
+
+.cor-p1 {
+  color: var(--cor-p1)
+}
+.cor-p2 {
+  color: var(--cor-p2)
+}
+.cor-p3 {
+  color: var(--cor-p3)
+}
+.cor-s1 {
+  color: var(--cor-s1)
+}
+.cor-s2 {
+  color: var(--cor-s2)
+}
+.cor-white {
+  color: var(--cor-white)
+}
+
+
+/*Fonts*/
+.font-pp-b{
+  font: 600 0.875rem 'Nunito Sans', sans-serif;
+}
+.font-p{
+  font: 400 1rem 'Nunito Sans', sans-serif;
+}
+.font-p-b{
+  font: 600 1rem 'Nunito Sans', sans-serif;
+}
+.font-p-b2{
+  font: 800 1rem 'Nunito Sans', sans-serif;
+}
+
+.font-m {
+  font: 400 1.250rem 'Nunito Sans', sans-serif;
+}
+.font-m-b2 {
+  font: 800 1.250rem 'Nunito Sans', sans-serif;
+}
+
+.font-g {
+  font: 800 1.750rem 'Nunito Sans', sans-serif;
+}
