@@ -208,7 +208,7 @@ const workingCountries = async () => {
 
   const inputSearch = document.querySelector('#search');
 
-  inputSearch.addEventListener('keypress', filterSearch);
+  inputSearch.addEventListener('keydown', filterSearch);
 
   function filterSearch() {
     setTimeout(() => {
@@ -220,18 +220,6 @@ const workingCountries = async () => {
       addCountries(filteredSearch);
     }, 100);
   };
-
-  //-----------------------------------------------------------------
-
-  inputSearch.addEventListener('blur', resetSearch);
-
-  function resetSearch() {
-    const nations = document.querySelectorAll('.country-item');
-    if(inputSearch.value === '' && nations.length === 0) {
-      addCountries(countries);
-    };
-  }
-
 };
 
 workingCountries();
