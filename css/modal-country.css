@@ -4,6 +4,7 @@
   height: 100%;
   z-index: 20;
   box-shadow: var(--bxs-p3);
+  transition: 0.2s ease-in-out;
 }
 
 .country-modal {
@@ -42,7 +43,7 @@
   border-radius: 5px;
   box-shadow: var(--bxs-p2);
   cursor: pointer;
-  transition: 0.3s ease-in-out;
+  transition: 0.2s ease-in-out;
 }
 
 .country-modal-btn-back:hover {
