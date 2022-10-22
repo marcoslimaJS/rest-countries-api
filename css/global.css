@@ -23,11 +23,9 @@ body{
   background: var(--cor-s1);
   color: var(--cor-p1);
   position: relative;
-  transition: 0.1s ease-in-out;
 }
 
 .dark{
-  transition: 0.1s ease-in-out;
   animation-name: animaDark;
   animation-duration: 0.5s;
 }
