@@ -61,7 +61,6 @@ const workingCountries = async () => {
   };
 
   function getDataInModal(country) {
-    console.log(country)
     const {name:{common, nativeName}, flags:{svg}, population, region, subregion, capital, tld, currencies, languages} = country;
 
     const central = capital ? capital[0] : "Doesn't have";
@@ -119,19 +118,55 @@ const workingCountries = async () => {
 
     const listBorderCountries =  borderCountries.reduce((accum, country) => {
       accum += `
-      <button class="btnBorderCountry font-p">${country}</button>
+      <button class="btnBorderCountry font-p-b">${country}</button>
       `
       return accum
     }, '');
     
     ulBorderCountries.innerHTML = listBorderCountries;
+
+    //--------------------------------------------------------------
+
+    const modalContent = document.querySelector('.country-modal-main');
+
+    const btnBorderCountry = document.querySelectorAll('.btnBorderCountry ');
+
+    btnBorderCountry.forEach((btn) => {
+      btn.addEventListener('click', getBtnBorderCountry)
+    });
+  
+    function getBtnBorderCountry() {
+      const btnClicked = countries.find(({name:{common}}) => {
+        return this.innerText === common;
+      });
+
+      const currentCountry = document.querySelector('.modal-name');
+      console.log(this.innerText, currentCountry.innerText)
+      if(this.innerText !== currentCountry.innerText) {
+        modalContent.classList.add('active');
+        setTimeout(() => {
+          modalContent.classList.remove('active');
+        }, 300);
+      };
+
+      getDataInModal(btnClicked);
+    };
   };
 
   function getBorderContruies(currentRegion) {
     const filteredByRegion = countries.filter(({region}) => {
       return region === currentRegion;
     });
-    const countriesNames = filteredByRegion.map(({ name: { common }}) => common)
+    
+    const allPopulation = filteredByRegion.map(({population}) => population);
+    allPopulation.sort((a,b) => b-a);
+    const top3Population = allPopulation.slice(0,3);
+    
+    const top3CountriesPopulation = filteredByRegion.filter(({population}) => {
+      return population === top3Population[0] || population === top3Population[1] || population === top3Population[2]
+    })
+
+    const countriesNames = top3CountriesPopulation.map(({ name: { common }}) => common)
     return countriesNames
   };
 

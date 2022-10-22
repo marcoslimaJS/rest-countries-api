@@ -4,7 +4,9 @@ body,h1,h2,h3,div,p,ul,li,a {
 }
 button,input {
   border: none;
-  
+}
+button {
+  display: inline-block;
 }
 ul {
   list-style: none;

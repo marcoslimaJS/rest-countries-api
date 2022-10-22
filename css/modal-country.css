@@ -14,6 +14,18 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   margin-bottom: 40px;
+  animation: animaModal;
+  animation-duration: 0.5s;
+}
+
+.country-modal-main.active .country-modal-content {
+  animation: animaModalBorderCountry;
+  animation-duration: 0.5s;
+}
+
+.country-modal-main.active .country-modal-img {
+  animation: animaModalBorderCountry;
+  animation-duration: 0.5s;
 }
 
 .modal-back {
@@ -30,11 +42,12 @@
   border-radius: 5px;
   box-shadow: var(--bxs-p2);
   cursor: pointer;
+  transition: 0.3s ease-in-out;
 }
 
-.country-modal-btn-back:hover span, .country-modal-btn-back:hover svg{
-  opacity: 0.6;
-  transition: 0.3s ease-in-out;
+.country-modal-btn-back:hover {
+  background: var(--cor-btn);
+  color: var(--cor-btn-2);
 }
 
 .country-modal-img {
@@ -80,9 +93,6 @@
   justify-self: end;
 }
 
-.border-countries {
-
-}
 
 .border-countries p {
   margin-bottom: 20px;
@@ -92,6 +102,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  margin-top: 20px;
 }
 
 .btnBorderCountry {
@@ -101,6 +112,12 @@
   padding: 10px 30px;
   box-shadow: var(--bxs-p2);
   cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+.btnBorderCountry:hover {
+  background: var(--cor-btn);
+  color: var(--cor-btn-2);
 }
 
 [data-modal="disabled"] {
@@ -131,5 +148,27 @@
   }
   .list-2 {
     justify-self: start;
+  }
+}
+
+@keyframes animaModal {
+  from {
+    opacity: 0;
+    transform: translate3d(0,-50px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes animaModalBorderCountry {
+  from {
+    opacity: 0;
+    transform: translate3d(-50px,0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
   }
 }

@@ -56,7 +56,6 @@
   cursor: pointer;
 }
 .filter-list {
-  display: none;
   background: var(--cor-white);
   padding: 15px;
   line-height: 1.750rem;
@@ -76,7 +75,11 @@
   opacity: 0.6;
 }
 
-.filter-label.active + .filter-list {
+.nav-filter {
+  display: none;
+}
+
+.filter-label.active + .nav-filter {
   display: block;
   animation-name: animaFilter;
   animation-duration: 0.5s;
@@ -148,7 +151,7 @@
 @keyframes animaFilter {
   from {
     opacity: 0;
-    transform: translate3d(0,-40px, 0);
+    transform: translate3d(0,-50px, 0);
   }
   to {
     opacity: 1;
