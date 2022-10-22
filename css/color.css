@@ -1,12 +1,22 @@
 /*Colors*/
 :root {
-  --cor-p1: hsl(209, 23%, 22%);
-  --cor-p2: hsl(207, 26%, 17%);
-  --cor-p3: hsl(200, 15%, 8%);
-  --cor-s1: hsl(0, 0%, 52%);
-  --cor-s2: hsl(0, 0%, 98%);
+  --cor-p1: hsl(200, 15%, 8%);
+  --cor-s1: hsl(0, 0%, 98%);
   --cor-white: hsl(0, 0%, 100%);
+  --bxs-p1: rgba(99, 99, 99, 0.2) 0px 1px 5px 0px;
+  --bxs-p2: rgba(99, 99, 99, 0.4) 0px 1px 5px 0px;
+  --bxs-p3: inset rgba(99, 99, 99, 0.2) 0px 1px 5px 0px;
 }
+
+.dark {
+  --cor-p1: hsl(0, 0%, 100%);
+  --cor-s1: hsl(207, 26%, 17%);
+  --cor-white: hsl(209, 23%, 22%);
+  --bxs-p1: rgba(0, 0, 0, 0.4) 0px 1px 5px 0px;
+  --bxs-p2: rgba(0, 0, 0, 0.4) 0px 1px 5px 0px;
+  --bxs-p3: inset rgba(0, 0, 0, 0.4) 0px 1px 5px 0px;
+}
+
 
 .cor-p1 {
   color: var(--cor-p1)
@@ -30,7 +40,7 @@
 
 /*Fonts*/
 .font-pp-b{
-  font: 600 0.875rem 'Nunito Sans', sans-serif;
+  font: 600 0.875rem/1.25rem 'Nunito Sans', sans-serif;
 }
 .font-p{
   font: 400 1rem 'Nunito Sans', sans-serif;
@@ -51,4 +61,22 @@
 
 .font-g {
   font: 800 1.750rem 'Nunito Sans', sans-serif;
+}
+
+@media(max-width:700px) {
+  .font-g {
+    font-size: 1.250rem;
+  }
+}
+
+@media(max-width:450px) {
+  .font-g {
+    font-size: 0.875rem;
+  }
+  .font-p-b2 {
+    font-size: 0.750rem;
+  }
+  .font-p-b{
+    font-size: 0.875rem;
+  }
 }

@@ -5,7 +5,8 @@ const getCountries = async () => {
 }
 
 const ulCountries = document.querySelector('[data-country="list"]');
-const countryModal = document.querySelector('.country-modal')
+const countryModal = document.querySelector('.country-modal');
+const ulBorderCountries = document.querySelector('.border-countries-list');
 
 const workingCountries = async () => {
   const countries = await getCountries()
@@ -46,7 +47,7 @@ const workingCountries = async () => {
   function openModal(e) {
     const modal = document.querySelector('[data-modal]');
     modal.dataset.modal = 'active';
-    document.body.style.overflowY = 'hidden';
+    //document.body.style.overflowY = 'hidden';
     const dataCountry = getClickedCountry(e.currentTarget);
     getDataInModal(dataCountry);
   };
@@ -84,12 +85,14 @@ const workingCountries = async () => {
     };
     
     const newIdiom = idiom ? idiom.substring(0, idiom.length - 2) : "Doesn't have";
-    
-    setDataInModal(svg, common, gageName, population, region, newSubregion, central, topLevelDomain, currency, newIdiom)
+
+    const borderCountries = getBorderContruies(region);
+
+    setDataInModal(svg, common, gageName, population, region, newSubregion, central, topLevelDomain, currency, newIdiom, borderCountries);
     
   };
 
-  function setDataInModal(svg, name, gageName, population, region, subregion, capital, topLevelDomain, currency, languages) {
+  function setDataInModal(svg, name, gageName, population, region, subregion, capital, topLevelDomain, currency, languages, borderCountries) {
     const modalSvg = document.querySelector('.modal-img');
     const modalName = document.querySelector('.modal-name');
     const modalGageName = document.querySelector('.modal-native-name');
@@ -102,7 +105,6 @@ const workingCountries = async () => {
     const modalLanguages = document.querySelector('.modal-languages');
 
 
-    console.log(modalName)
     modalSvg.src = svg;
     modalSvg.alt = name;
     modalName.innerText = name;
@@ -114,17 +116,34 @@ const workingCountries = async () => {
     modalTopLevelDomain.innerText = topLevelDomain;
     modalCurrency.innerText = currency;
     modalLanguages.innerText = languages;
-  }
 
-  const btnModalBack = document.querySelector('.country-modal-btn-back')
+    const listBorderCountries =  borderCountries.reduce((accum, country) => {
+      accum += `
+      <button class="btnBorderCountry font-p">${country}</button>
+      `
+      return accum
+    }, '');
+    
+    ulBorderCountries.innerHTML = listBorderCountries;
+  };
 
-  btnModalBack.addEventListener('click', closeModal)
+  function getBorderContruies(currentRegion) {
+    const filteredByRegion = countries.filter(({region}) => {
+      return region === currentRegion;
+    });
+    const countriesNames = filteredByRegion.map(({ name: { common }}) => common)
+    return countriesNames
+  };
+
+  const btnModalBack = document.querySelector('.country-modal-btn-back');
+
+  btnModalBack.addEventListener('click', closeModal);
 
   function closeModal() {
     const modal = document.querySelector('[data-modal]');
     modal.dataset.modal = 'disabled';
     document.body.style.overflowY = 'visible';
-  }
+  };
 
   //------------------------------------------------------------------
 
@@ -139,7 +158,6 @@ const workingCountries = async () => {
 
   const filterList = document.querySelectorAll('.filter-list li');
 
-
   filterList.forEach((region) => {
     region.addEventListener('click', filterRegion);
   });
@@ -148,7 +166,35 @@ const workingCountries = async () => {
     const filteredCountries = countries.filter(({region}) => {
       return e.currentTarget.id === region
     })
-    addCountries(filteredCountries)
+    addCountries(filteredCountries);
+  }
+
+  //---------------------------------------------
+
+  const inputSearch = document.querySelector('#search');
+
+  inputSearch.addEventListener('keypress', filterSearch);
+
+  function filterSearch() {
+    setTimeout(() => {
+      const filteredSearch = countries.filter(({name:{common}}) => {
+        const countryName = common.toLowerCase();
+        const searchName  = inputSearch.value.toLowerCase();
+        return countryName.startsWith(searchName)
+      });
+      addCountries(filteredSearch);
+    }, 100);
+  };
+
+  //-----------------------------------------------------------------
+
+  inputSearch.addEventListener('blur', resetSearch);
+
+  function resetSearch() {
+    const nations = document.querySelectorAll('.country-item');
+    if(inputSearch.value === '' && nations.length === 0) {
+      addCountries(countries);
+    };
   }
 
 };

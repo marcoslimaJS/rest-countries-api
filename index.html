@@ -16,17 +16,22 @@
   <header class="header-bg">
     <div class="header container">
       <h1 class="font-g">Where in the world?</h1>
-      <div class="dark-mode font-p-b2">
-        <span><img src="./imgs/moon-outline.svg" alt=""></span>
+      <button class="dark-mode font-p-b2">
+        <span>
+          <svg  class="svg-moon" width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Moon</title><path d="M160 136c0-30.62 4.51-61.61 16-88C99.57 81.27 48 159.32 48 248c0 119.29 96.71 216 216 216 88.68 0 166.73-51.57 200-128-26.39 11.49-57.38 16-88 16-119.29 0-216-96.71-216-216z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></svg>
+        </span>
         <span>Dark Mode</span>
-      </div>
+      </button>
     </div>
   </header>
 
   <section class="country-modal-bg" data-modal="disabled">
     <div class="country-modal container">
       <div class="modal-back">
-        <button class="country-modal-btn-back font-p-b"><img src="/imgs/arrow-back-outline.svg" alt="<"> Back</button>
+        <button class="country-modal-btn-back font-p-b">
+          <svg width="20px" xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Arrow Back</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M244 400L100 256l144-144M120 256h292"/></svg>
+          <span>Back</span>
+        </button>
       </div>
       <div class="country-modal-main">
         <div class="country-modal-img">
@@ -35,26 +40,26 @@
         <div class="country-modal-content">
           <h3 class="modal-name font-g"></h3>
           <div class="country-modal-data font-p-b">
-            <ul>
+            <ul class="country-modal-list">
               <li>Native Name: <span class="modal-native-name"></span></li>
               <li>Population: <span class="modal-population"></span></li>
               <li>Region: <span class="modal-region"></span></li>
               <li>Sub Region: <span class="modal-subregion"></span></li>
               <li>Capital: <span class="modal-capital"></span></li>
             </ul>
-            <ul>
+            <ul class="country-modal-list list-2">
               <li>Top Level Domain: <span class="modal-tld"></span></li>
               <li>Currencies: <span class="modal-currencies"></span></li>
               <li>Languages: <span class="modal-languages"></span></li>
             </ul>
           </div>
-          <div class="border-countries">
-            <span class="font-p-b">Border Countries:</span>
-            <ul>
-
-            </ul>
-          </div>
         </div>
+      </div>
+      <div class="border-countries">
+        <p class="font-p-b">Border Countries:</p>
+        <ul class="border-countries-list">
+
+        </ul>
       </div>
     </div>
   </section>
@@ -64,23 +69,25 @@
       <div class="country-header">
         <div class="search-country">
           <label for="search">
-            <img src="/imgs/search-outline.svg" alt=">">
+            <svg width="20px" xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Search</title><path d="M221.09 64a157.09 157.09 0 10157.09 157.09A157.1 157.1 0 00221.09 64z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32" d="M338.29 338.29L448 448"/></svg>
           </label>
           <input class="search-input font-p-b" type="text" placeholder="Search for a country..." id="search">
         </div>
         <div class="filter-country">
           <p class="filter-label font-pp-b">
-            Filter by Region 
-            <img src="/imgs/arrow-outline.svg" alt=">">
+            <span>Filter by Region </span>
+            <svg width="18px" xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><title>Chevron Forward</title><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M184 112l144 144-144 144"/></svg>
           </p>
-          <ul class="filter-list font-pp-b">
-            <li id="Africa">Africa</li>
-            <li id="Americas">Americas</li>
-            <li id="Asia">Asia</li>
-            <li id="Europe">Europe</li>
-            <li id="Oceania">Oceania</li>
-            <li id="Antarctic">Antarctic</li>
-          </ul>
+          <nav>
+            <ul class="filter-list font-pp-b">
+              <li id="Africa">Africa</li>
+              <li id="Americas">Americas</li>
+              <li id="Asia">Asia</li>
+              <li id="Europe">Europe</li>
+              <li id="Oceania">Oceania</li>
+              <li id="Antarctic">Antarctic</li>
+            </ul>
+          </nav>
         </div>
       </div>
 
@@ -92,6 +99,7 @@
     </div>
   </main>
   
-  <script src="index.js"></script>
+  <script src="src/index.js"></script>
+  <script src="src/dark-theme.js"></script>
 </body>
 </html>

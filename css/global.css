@@ -2,6 +2,10 @@ body,h1,h2,h3,div,p,ul,li,a {
   padding: 0px;
   margin: 0px;
 }
+button,input {
+  border: none;
+  
+}
 ul {
   list-style: none;
 }
@@ -14,8 +18,25 @@ img{
 }
 body{
   font-family: 'Nunito Sans', sans-serif;
-  background: var(--cor-s2);
+  background: var(--cor-s1);
+  color: var(--cor-p1);
   position: relative;
+  transition: 0.4s ease-in-out;
+}
+
+.dark{
+  transition: 0.4s ease-in-out;
+  animation-name: animaDark;
+  animation-duration: 0.5s;
+}
+
+@keyframes animaDark {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .container {
@@ -25,22 +46,61 @@ body{
   padding: 40px;
 }
 
+@media(max-width: 700px) {
+  .container {
+    padding: 20px;
+  }
+}
+@media(max-width: 400px) {
+  .container {
+    padding: 15px;
+  }
+}
+
 .header-bg {
   background: var(--cor-white);
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 1px 5px 0px;
-  
 }
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 40px;
-  
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.svg-moon {
+  margin-top: 4px;
+}
+
+@media(max-width: 450px) {
+  .svg-moon {
+    width: 15px;
+  }
+}
+
+
+.dark-mode:hover .svg-moon path{
+  fill: currentColor;
+}
+
+.dark .svg-moon path{
+  fill: currentColor;
+}
+
+.svg-moon path {
+  transition: 1s ease-in-out;
+}
+
+.dark .dark-mode:hover .svg-moon path{
+  fill: none;
 }
 
 .dark-mode {
   display: flex;
   align-items: center;
   gap: 10px;
+  cursor: pointer;
+  background: none;
+  color: var(--cor-p1);
 }
