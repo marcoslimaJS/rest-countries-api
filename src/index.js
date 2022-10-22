@@ -43,11 +43,11 @@ const workingCountries = async () => {
       country.addEventListener('click', openModal)
     })
   };
-  
+
   function openModal(e) {
     const modal = document.querySelector('[data-modal]');
     modal.dataset.modal = 'active';
-    //document.body.style.overflowY = 'hidden';
+    ulCountries.style.display = "none";
     const dataCountry = getClickedCountry(e.currentTarget);
     getDataInModal(dataCountry);
   };
@@ -177,7 +177,7 @@ const workingCountries = async () => {
   function closeModal() {
     const modal = document.querySelector('[data-modal]');
     modal.dataset.modal = 'disabled';
-    document.body.style.overflowY = 'visible';
+    ulCountries.style.display = "flex";
   };
 
   //------------------------------------------------------------------
