@@ -1,4 +1,4 @@
-body,h1,h2,h3,div,p,ul,li,a {
+body,h1,h2,h3,div,p,ul,li,a,button {
   padding: 0px;
   margin: 0px;
 }
@@ -7,12 +7,14 @@ button,input {
 }
 button {
   display: inline-block;
+  background: none;
 }
 ul {
   list-style: none;
 }
 a{
   text-decoration: none;
+  color: currentColor;
 }
 img{
   display: block;
@@ -59,6 +61,7 @@ body{
 
 .header-bg {
   background: var(--cor-white);
+  box-shadow: var(--bxs-p1);
 }
 
 .header {

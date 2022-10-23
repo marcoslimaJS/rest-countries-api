@@ -7,6 +7,8 @@ const getCountries = async () => {
 const ulCountries = document.querySelector('[data-country="list"]');
 const countryModal = document.querySelector('.country-modal');
 const ulBorderCountries = document.querySelector('.border-countries-list');
+const filterList = document.querySelector('.filter-list');
+
 
 const workingCountries = async () => {
   const countries = await getCountries()
@@ -16,17 +18,19 @@ const workingCountries = async () => {
       const central = capital ? capital[0] : "Doesn't have";
       accum += `
       <li class="country-item">
-        <div class="country-img">
-        <img src="${png}" alt="${common}">
-        </div>
-        <div class="country-info">
-          <h3 class="country-name font-m-b2">${common}</h3>
-          <ul class="country-data font-p-b">
-            <li>Population: <span>${population}</span></li>
-            <li>Region: <span>${region}</span></li>
-            <li>Capital: <span>${central}</span></li>
-          </ul>
-        </div>
+        <a href="">
+          <div class="country-img">
+          <img src="${png}" alt="${common}">
+          </div>
+          <div class="country-info">
+            <h3 class="country-name font-m-b2">${common}</h3>
+            <ul class="country-data font-p-b">
+              <li>Population: <span>${population}</span></li>
+              <li>Region: <span>${region}</span></li>
+              <li>Capital: <span>${central}</span></li>
+            </ul>
+          </div>
+        </a>
       </li>
       `
       return accum
@@ -45,9 +49,11 @@ const workingCountries = async () => {
   };
 
   function openModal(e) {
+    e.preventDefault();
     const modal = document.querySelector('[data-modal]');
     modal.dataset.modal = 'active';
     ulCountries.style.display = "none";
+    filterList.style.display = 'none';
     const dataCountry = getClickedCountry(e.currentTarget);
     getDataInModal(dataCountry);
   };
@@ -178,26 +184,29 @@ const workingCountries = async () => {
     const modal = document.querySelector('[data-modal]');
     modal.dataset.modal = 'disabled';
     ulCountries.style.display = "flex";
+    filterList.style.display = 'block';
   };
 
   //------------------------------------------------------------------
 
-  const labelFilter = document.querySelector('.filter-label');
-  labelFilter.addEventListener('click', openFilterModal);
+  const filterCountry = document.querySelector('.filter-country');
+  filterCountry.addEventListener('click', openFilterModal);
 
-  function openFilterModal() {
-    labelFilter.classList.toggle('active');
+  function openFilterModal(e) {
+    e.preventDefault();
+    filterCountry.classList.toggle('active');
   }
 
   //------------------------------------------------------
 
-  const filterList = document.querySelectorAll('.filter-list li');
+  const filterListItem = document.querySelectorAll('.filter-list li');
 
-  filterList.forEach((region) => {
+  filterListItem.forEach((region) => {
     region.addEventListener('click', filterRegion);
   });
 
   function filterRegion(e) {
+    e.preventDefault();
     const filteredCountries = countries.filter(({region}) => {
       return e.currentTarget.id === region
     })

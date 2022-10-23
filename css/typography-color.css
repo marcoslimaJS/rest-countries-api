@@ -7,7 +7,7 @@
   --cor-btn-2: hsl(0, 0%, 98%);
   --bxs-p1: rgba(99, 99, 99, 0.2) 0px 1px 5px 0px;
   --bxs-p2: rgba(99, 99, 99, 0.4) 0px 1px 5px 0px;
-  --bxs-p3: inset rgba(99, 99, 99, 0.2) 0px 1px 5px 0px;
+  --bxs-p3: inset rgba(99, 99, 99, 0.2) 0px 10px 7px -10px;
 }
 
 .dark {
@@ -16,7 +16,7 @@
   --cor-white: hsl(209, 23%, 22%);
   --bxs-p1: rgba(0, 0, 0, 0.4) 0px 1px 5px 0px;
   --bxs-p2: rgba(0, 0, 0, 0.4) 0px 1px 5px 0px;
-  --bxs-p3: inset rgba(0, 0, 0, 0.4) 0px 1px 5px 0px;
+  --bxs-p3: inset rgba(0, 0, 0, 0.4) 0px 10px 7px -10px;
 }
 
 

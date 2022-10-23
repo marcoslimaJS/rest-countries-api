@@ -64,7 +64,6 @@
   position: absolute;
   width: calc(100% - 30px);
   margin-top: 5px;
-  
 }
 
 .filter-list li {
@@ -79,7 +78,7 @@
   display: none;
 }
 
-.filter-label.active + .nav-filter {
+.filter-country.active .nav-filter {
   display: block;
   animation-name: animaFilter;
   animation-duration: 0.5s;
@@ -122,6 +121,7 @@
 
 .country-info {
   padding: 20px;
+  text-align: start;
 }
 .country-name {
   margin-bottom: 10px;

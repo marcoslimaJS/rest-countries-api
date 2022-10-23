@@ -9,6 +9,7 @@
 
 .country-modal {
   margin-top: 10px;
+  position: relative;
 }
 
 .country-modal-main {
