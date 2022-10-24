@@ -11,23 +11,64 @@ const filterList = document.querySelector('.filter-list');
 
 
 const workingCountries = async () => {
-  const countries = await getCountries()
+  const allCountriesData = await getCountries();
+
+  const countries = allCountriesData.reduce((accum, { name:{ common, nativeName }, flags:{ png, svg }, population, region, subregion, capital, tld, currencies, languages }) => {
+
+    const capitalTrated = capital ? capital[0] : "Doesn't have";
+    const tldTrated = tld ? tld[0] : "Doesn't have";
+    const subregionTrated = subregion ?? "Doesn't have";
+    const populationTrated = population.toLocaleString();
+
+    let nativeNameTrated = "Doesn't have";
+    let currenciesTrated = "Doesn't have";
+    let idiom = "";
+  
+    for(let x in nativeName) {
+      nativeNameTrated = nativeName[x].common;
+      break;
+    };
+    for(let x in currencies) {
+      currenciesTrated = currencies[x].name;
+      break;
+    };
+    for(let x in languages) {
+      idiom += `${languages[x]}, `;
+    };
+    
+    const languageTreated = idiom ? idiom.substring(0, idiom.length - 2) : "Doesn't have";
+
+    const country = {
+      png,
+      svg,
+      name: common,
+      nativeName: nativeNameTrated,
+      population: populationTrated,
+      region,
+      subregion: subregionTrated,
+      capital: capitalTrated,
+      tld: tldTrated,
+      currencies: currenciesTrated,
+      languages: languageTreated
+    };
+    accum.push(country);
+    return accum
+  }, []);
 
   function addCountries(countries) {
-    const listCountries = countries.reduce((accum, {name:{common}, flags:{png}, population, region, capital}) => {
-      const central = capital ? capital[0] : "Doesn't have";
+    const listCountries = countries.reduce((accum, {png, name, population, region, capital}) => {
       accum += `
       <li class="country-item">
         <a href="">
           <div class="country-img">
-          <img src="${png}" alt="${common}">
+          <img src="${png}" alt="${name}">
           </div>
           <div class="country-info">
-            <h3 class="country-name font-m-b2">${common}</h3>
+            <h3 class="country-name font-m-b2">${name}</h3>
             <ul class="country-data font-p-b">
               <li>Population: <span>${population}</span></li>
               <li>Region: <span>${region}</span></li>
-              <li>Capital: <span>${central}</span></li>
+              <li>Capital: <span>${capital}</span></li>
             </ul>
           </div>
         </a>
@@ -55,52 +96,24 @@ const workingCountries = async () => {
     ulCountries.style.display = "none";
     filterList.style.display = 'none';
     const dataCountry = getClickedCountry(e.currentTarget);
-    getDataInModal(dataCountry);
+    setDataInModal(dataCountry);
   };
   
   function getClickedCountry(country) {
     const countryName = country.querySelector('.country-name').innerText;
-    const clickedCountry = countries.find(({name:{common}}) => {
-      return countryName === common;
+    const clickedCountry = countries.find(({name}) => {
+      return countryName === name;
     })
     return clickedCountry
   };
 
-  function getDataInModal(country) {
-    const {name:{common, nativeName}, flags:{svg}, population, region, subregion, capital, tld, currencies, languages} = country;
-
-    const central = capital ? capital[0] : "Doesn't have";
-    const topLevelDomain = tld ? tld[0] : "Doesn't have";
-    const newSubregion = subregion ?? "Doesn't have";
-    
-    let gageName = "Doesn't have";
-    let currency = "Doesn't have";
-    let idiom = "";
-  
-    for(let x in nativeName) {
-      gageName = nativeName[x].common;
-      break;
-    };
-    for(let x in currencies) {
-      currency = currencies[x].name;
-      break;
-    };
-    for(let x in languages) {
-      idiom += `${languages[x]}, `;
-    };
-    
-    const newIdiom = idiom ? idiom.substring(0, idiom.length - 2) : "Doesn't have";
+  function setDataInModal({svg, name, nativeName, population, region, subregion, capital, tld, currencies, languages}) {
 
     const borderCountries = getBorderContruies(region);
 
-    setDataInModal(svg, common, gageName, population, region, newSubregion, central, topLevelDomain, currency, newIdiom, borderCountries);
-    
-  };
-
-  function setDataInModal(svg, name, gageName, population, region, subregion, capital, topLevelDomain, currency, languages, borderCountries) {
     const modalSvg = document.querySelector('.modal-img');
     const modalName = document.querySelector('.modal-name');
-    const modalGageName = document.querySelector('.modal-native-name');
+    const modalNativeName = document.querySelector('.modal-native-name');
     const modalPopulation = document.querySelector('.modal-population');
     const modalRegion = document.querySelector('.modal-region');
     const modalSubregion = document.querySelector('.modal-subregion');
@@ -109,17 +122,16 @@ const workingCountries = async () => {
     const modalCurrency = document.querySelector('.modal-currencies');
     const modalLanguages = document.querySelector('.modal-languages');
 
-
     modalSvg.src = svg;
     modalSvg.alt = name;
     modalName.innerText = name;
-    modalGageName.innerText = gageName;
+    modalNativeName.innerText = nativeName;
     modalPopulation.innerText = population;
     modalRegion.innerText = region;
     modalSubregion.innerText = subregion;
     modalCapital.innerText = capital;
-    modalTopLevelDomain.innerText = topLevelDomain;
-    modalCurrency.innerText = currency;
+    modalTopLevelDomain.innerText = tld;
+    modalCurrency.innerText = currencies;
     modalLanguages.innerText = languages;
 
     const listBorderCountries =  borderCountries.reduce((accum, country) => {
@@ -142,12 +154,11 @@ const workingCountries = async () => {
     });
   
     function getBtnBorderCountry() {
-      const btnClicked = countries.find(({name:{common}}) => {
-        return this.innerText === common;
+      const btnClicked = countries.find(({name}) => {
+        return this.innerText === name;
       });
 
       const currentCountry = document.querySelector('.modal-name');
-      console.log(this.innerText, currentCountry.innerText)
       if(this.innerText !== currentCountry.innerText) {
         modalContent.classList.add('active');
         setTimeout(() => {
@@ -155,7 +166,7 @@ const workingCountries = async () => {
         }, 300);
       };
 
-      getDataInModal(btnClicked);
+      setDataInModal(btnClicked);
     };
   };
 
@@ -172,7 +183,7 @@ const workingCountries = async () => {
       return population === top3Population[0] || population === top3Population[1] || population === top3Population[2]
     })
 
-    const countriesNames = top3CountriesPopulation.map(({ name: { common }}) => common)
+    const countriesNames = top3CountriesPopulation.map(({ name }) => name)
     return countriesNames
   };
 
@@ -221,8 +232,8 @@ const workingCountries = async () => {
 
   function filterSearch() {
     setTimeout(() => {
-      const filteredSearch = countries.filter(({name:{common}}) => {
-        const countryName = common.toLowerCase();
+      const filteredSearch = countries.filter(({ name }) => {
+        const countryName = name.toLowerCase();
         const searchName  = inputSearch.value.toLowerCase();
         return countryName.startsWith(searchName)
       });
