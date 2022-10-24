@@ -18,7 +18,6 @@ const workingCountries = async () => {
     const capitalTrated = capital ? capital[0] : "Doesn't have";
     const tldTrated = tld ? tld[0] : "Doesn't have";
     const subregionTrated = subregion ?? "Doesn't have";
-    const populationTrated = population.toLocaleString();
 
     let nativeNameTrated = "Doesn't have";
     let currenciesTrated = "Doesn't have";
@@ -43,7 +42,7 @@ const workingCountries = async () => {
       svg,
       name: common,
       nativeName: nativeNameTrated,
-      population: populationTrated,
+      population,
       region,
       subregion: subregionTrated,
       capital: capitalTrated,
@@ -66,7 +65,7 @@ const workingCountries = async () => {
           <div class="country-info">
             <h3 class="country-name font-m-b2">${name}</h3>
             <ul class="country-data font-p-b">
-              <li>Population: <span>${population}</span></li>
+              <li>Population: <span>${population.toLocaleString()}</span></li>
               <li>Region: <span>${region}</span></li>
               <li>Capital: <span>${capital}</span></li>
             </ul>
@@ -126,7 +125,7 @@ const workingCountries = async () => {
     modalSvg.alt = name;
     modalName.innerText = name;
     modalNativeName.innerText = nativeName;
-    modalPopulation.innerText = population;
+    modalPopulation.innerText = population.toLocaleString();
     modalRegion.innerText = region;
     modalSubregion.innerText = subregion;
     modalCapital.innerText = capital;
